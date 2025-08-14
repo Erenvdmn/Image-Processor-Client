@@ -6,8 +6,8 @@ import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Link } from 'react-router-dom';
 
 export default function Sidebars() {
-  const [collapsed, setCollapsed] = useState(false);
-  const [toggled, setToggled] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
+  const [toggled, setToggled] = useState(true);
 
   const handleCollapsedChange = () => setCollapsed(!collapsed);
   const handleToggleSidebar = (value) => setToggled(value);

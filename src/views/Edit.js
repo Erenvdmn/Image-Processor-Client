@@ -1,6 +1,7 @@
 import React, { useEffect, useState }from "react";
 import { useNavigate } from "react-router-dom";
 import ApiRequest from '../helpers/ApiManager';
+import FileUploader from '../components/FileUploader';
 import '../css/Edit.css';
 import { useParams } from "react-router";
 
@@ -11,6 +12,7 @@ export default function Edit() {
     const [ height, setHeight ] = useState(null);
     const [ type, setType ] = useState(null);
     const [ imageURL, setImageURL ] = useState(null);
+    const [ watermark, setWatermark ] = useState(null);
     const navigate = useNavigate();
 
 
@@ -42,35 +44,53 @@ export default function Edit() {
     }, [id]);
 
 
-    const handleSubmit = async () => {
+    const handleUpload = async () => {
         try {
+            const formData = new FormData();
+            formData.append('file', watermark)
 
-            const payloadConvertType = {
-                id,
-                newType: type
-            };
-            const payloadChangeSize = {
-                id,
-                width: width,
-                height: height
-            };
-            const responseConvertType = await ApiRequest(`convert-type`, 'POST', payloadConvertType);
-            const responseChangeSize = await ApiRequest(`change-size`, 'POST', payloadChangeSize);
-
-            if (responseChangeSize.ok && responseConvertType.ok) {
-                console.log(responseChangeSize, responseConvertType);
-                navigate("/library")
-                return;
-            } else {
-                return console.error("Response not ok");
-            }
+            ApiRequest('uploadWM', 'POST', formData, true)
+                .then(res => res.json())
+                .then(data => console.log(data));
         } catch (error) {
-            return console.error("Response not ok", error);
+            console.error("Watermark couldn't be uploaded");
         }
     }
 
+    const handleSubmit = async () => {
+        try {
+            const payload = {
+                id,
+                width,
+                height,
+                type
+            };
+
+            const res = await ApiRequest('apply-watermark-and-edit', 'POST', payload);
+            if (res.ok) {
+                const data = await res.json();
+                if (data.done) {
+                    navigate("/library");
+                    return;
+                }
+            }
+            console.error("Response not ok");
+        } catch (error) {
+            console.error("Response not ok", error);
+        }
+    };
+
+
+
     return (
         <div className="background">
+            <div className="form-section">
+                <label>Watermark</label>
+                <div className="upload-image-div">
+                    <FileUploader onFileSelect={setWatermark}/>
+                </div>
+                <button onClick={handleUpload}>Edit With Watermark</button>
+            </div>
             <div className="form-section">
                 <label>Width:</label>
                 <input
