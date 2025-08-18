@@ -1,11 +1,10 @@
-/* Global reset - tüm varsayılan margin/padding'leri sıfırla */
+/* Global reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Body ve html'i sıfırla */
 html, body {
   margin: 0;
   padding: 0;
@@ -18,7 +17,7 @@ html, body {
   width: 100vw;
   display: flex;
   justify-content: flex-start;
-  align-content: flex-start; /* align-items yerine align-content */
+  align-content: flex-start;
   background-color: #001BB7;
   position: fixed;
   top: 0;
@@ -27,13 +26,13 @@ html, body {
   padding-left: 90px;
   overflow-y: auto;
   flex-wrap: wrap;
-  gap: 10px; /* margin yerine gap kullanın */
+  gap: 10px;
 }
 
 .search-div {
   width: 100%;
   display: flex;
-  justify-content: center; /* ortala yatayda */
+  justify-content: center;
   padding: 20px 0;
 }
 
@@ -68,7 +67,7 @@ html, body {
   gap: 10px;
   justify-content: flex-start;
   align-content: flex-start;
-  flex: 1; /* Kalan alanı kapla */
+  flex: 1;
   margin-top: 20px;
   margin-bottom: 80px;
 }

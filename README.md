@@ -1,70 +1,88 @@
-# Getting Started with Create React App
+# Image Processor Client
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React-based web application for uploading, tagging, browsing, and editing images.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Upload Images:** Easily upload images from your device.
+- **Tagging:** Add descriptive tags to each image for better organization.
+- **Library View:** Browse all uploaded images in a searchable gallery.
+- **Search:** Filter images by tag using the search bar.
+- **Edit Navigation:** Click on an image to navigate to its edit page.
+- **Delete Images:** Remove images from your library.
+- **Apply Watermark & Edit:** Edit images and apply watermarks.
 
-### `npm start`
+## Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Prerequisites
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Node.js (v16 or newer)
+- npm or yarn
 
-### `npm test`
+### Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/Erenvdmn/Image-Processor-Client.git
+    cd Image-Processor-Client
+    ```
 
-### `npm run build`
+2. Install dependencies:
+    ```sh
+    npm install
+    # or
+    yarn install
+    ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Running the App
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```sh
+npm start
+# or
+yarn start
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### `npm run eject`
+## Project Structure
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- `src/views/Home.js` — Upload images and add tags.
+- `src/views/Library.js` — Browse and search images.
+- `src/components/FileUploader.js` — File upload component.
+- `src/helpers/ApiManager.js` — API request handler.
+- `src/css/Library.css` — Library view styles.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## API Endpoints
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The client expects a backend with these endpoints:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- `POST /upload` — Upload image and tag.
+- `GET /media` — List all images.
+- `GET /media/:id` — List an specified image.
+- `GET /image/:id` — Get image details.
+- `DELETE /delete/:id` — Delete an image by ID.
+- `POST /apply-watermark-and-edit` — Apply watermark and edit an image.
 
-## Learn More
+## Customization
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Update API endpoints in `ApiManager.js` if needed.
+- Modify CSS files for custom styles.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Project Structure
 
-### Code Splitting
+```
+src/
+  ├── css/
+  ├── components/
+  ├── views/
+  ├── App.js
+  └── helpers/
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## License
 
-### Analyzing the Bundle Size
+MIT
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Built with

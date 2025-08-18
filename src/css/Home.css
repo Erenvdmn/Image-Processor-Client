@@ -1,11 +1,10 @@
-/* Global reset - tüm varsayılan margin/padding'leri sıfırla */
+/* Global reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Body ve html'i sıfırla */
 html, body {
   margin: 0;
   padding: 0;
@@ -14,16 +13,16 @@ html, body {
 }
 
 .page-container {
-  height: 100vh; /* tam ekran yüksekliği */
-  width: 100vw; /* tam ekran genişliği */
+  height: 100vh;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #001BB7;
-  position: fixed; /* Sayfayı tamamen kaplasın */
+  position: fixed;
   top: 0;
   left: 0;
-  z-index: 1; /* Sidebar'ın altında kalacak */
+  z-index: 1;
 }
 
 /* Ana kutu */
