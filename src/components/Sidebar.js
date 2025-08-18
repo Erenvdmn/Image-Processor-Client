@@ -15,7 +15,7 @@ export default function Sidebars() {
   return (
     <Sidebar
       className={`app ${toggled ? "toggled" : ""}`}
-      style={{ height: "100%", position: "absolute" }}
+      style={{ height: "100vh", position: "absolute" }}
       collapsed={collapsed}
       toggled={toggled}
     >

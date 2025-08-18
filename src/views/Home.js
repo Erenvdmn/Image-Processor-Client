@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import ApiRequest from '../helpers/ApiManager';
 import FileUploader from '../components/FileUploader';
+import { useNavigate } from 'react-router-dom';
 import '../css/Home.css';
 
 export default function Home() {
     const [image, setImage] = useState(null);
+    const [ tag, setTag ] = useState('');
+    const navigate = useNavigate();
 
     const handleUpload = async () => {
         if (!image) {
@@ -14,10 +17,15 @@ export default function Home() {
         try {
             const formData = new FormData();
             formData.append('file', image);
+            formData.append('tag', tag)
 
             ApiRequest('upload', 'POST', formData, true)
                 .then(res => res.json())
                 .then(data => console.log(data));
+
+            console.log('endpoint çalışıyor')
+            
+            window.location.href ='http://192.168.0.250:3000/library';
 
         } catch (error) {
             console.error("Image couldn't be uploaded ", error);
@@ -42,9 +50,11 @@ export default function Home() {
                                     alt="Preview"
                                     style={{ maxWidth: "200px", display: "block", marginTop: "10px" }}
                                 />
-                                <p>Name: {image.name}</p>
-                                <p>Size: {(image.size / 1024).toFixed(2)} KB</p>
-                                <p>Type: {image.type}</p>
+                                <input 
+                                    className="tag-input" 
+                                    value={tag}
+                                    onChange={(e) => setTag(e.target.value)}
+                                    />
                                 <button onClick={handleUpload}>Upload</button>
                             </div>
                         )}

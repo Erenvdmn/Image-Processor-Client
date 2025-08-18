@@ -6,11 +6,12 @@ import '../css/Edit.css';
 import { useParams } from "react-router";
 
 
-export default function Edit() {
+export default function Edit({ setImages }) {
     const { id } = useParams();
     const [ width, setWidth ] = useState(null);
     const [ height, setHeight ] = useState(null);
     const [ type, setType ] = useState(null);
+    const [ tag, setTag ] = useState(null)
     const [ imageURL, setImageURL ] = useState(null);
     const [ watermark, setWatermark ] = useState(null);
     const navigate = useNavigate();
@@ -28,6 +29,7 @@ export default function Edit() {
                     setWidth(data.width);
                     setHeight(data.height);
                     setType(data.type);
+                    setTag(data.tag)
                 } if (data.path) {
                     setImageURL(data.path);
                 }
@@ -63,7 +65,8 @@ export default function Edit() {
                 id,
                 width,
                 height,
-                type
+                type,
+                tag
             };
 
             const res = await ApiRequest('apply-watermark-and-edit', 'POST', payload);
@@ -79,6 +82,21 @@ export default function Edit() {
             console.error("Response not ok", error);
         }
     };
+
+    const handleDelete = async (id) => {
+        try {
+            const response = await ApiRequest(`delete/${id}`, 'POST');
+
+            if (response.ok) {
+                setImages(prev => prev.filter(img => img._id !== id));
+                navigate('/library')
+                return console.log("image deleted");
+            }
+            return console.error("image can't be deleted")
+        } catch (error) {
+            return console.error("image couldn't deleted", error)
+        }
+    }
 
 
 
@@ -119,10 +137,20 @@ export default function Edit() {
                     <option value="png">png</option>
                     <option value="jpeg">jpg</option>
                 </select>
+                <label>Tag:</label>
+                <input 
+                    className="form-input"
+                    type="text"
+                    value={tag}
+                    onChange={(e) => setTag(e.target.value)}
+                />
                 <button onClick={() => handleSubmit()}>Change</button>
             </div>
-            <div className="image-view">
-                {imageURL && <img src={imageURL} alt="Preview" style={{ maxWidth: '100%', maxHeight: '400px' }} />}
+            <div className="image-view-div">
+                <div className="image-view">
+                    {imageURL && <img src={imageURL} alt="Preview" style={{ maxWidth: '100%', maxHeight: '400px' }} />}
+                </div>
+                <button className="delete-button" onClick={() => handleDelete(id)}>Delete Image</button>
             </div>
         </div>
     )
