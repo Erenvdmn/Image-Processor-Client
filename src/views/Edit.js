@@ -4,6 +4,10 @@ import ApiRequest from '../helpers/ApiManager';
 import FileUploader from '../components/FileUploader';
 import '../css/Edit.css';
 import { useParams } from "react-router";
+import { Button } from "../components/ui/button";
+import { Label } from "../components/ui/label";
+import { Input } from "../components/ui/input";
+import { Card } from "../components/ui/card";
 
 
 export default function Edit({ setImages }) {
@@ -101,17 +105,17 @@ export default function Edit({ setImages }) {
 
 
     return (
-        <div className="background">
-            <div className="form-section">
-                <label>Watermark</label>
+        <div className="background" style={{position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, margin: 0}}>
+            <Card className="form-section">
+                <Label>Watermark</Label>
                 <div className="upload-image-div">
                     <FileUploader onFileSelect={setWatermark}/>
                 </div>
-                <button onClick={handleUpload}>Edit With Watermark</button>
-            </div>
-            <div className="form-section">
-                <label>Width:</label>
-                <input
+                <Button className="orange-button" onClick={handleUpload}>Edit With Watermark</Button>
+            </Card>
+            <Card className="form-section">
+                <Label>Width:</Label>
+                <Input
                     className="form-input"
                     type="number"
                     value={width}
@@ -119,8 +123,8 @@ export default function Edit({ setImages }) {
                     onChange={(e) => setWidth(e.target.value)}
                     step="10"
                 />
-                <label>Height:</label>
-                <input
+                <Label>Height:</Label>
+                <Input
                     className="form-input"
                     type="number"
                     value={height}
@@ -128,7 +132,7 @@ export default function Edit({ setImages }) {
                     onChange={(e) => setHeight(e.target.value)}
                     step="10"
                 />
-                <label>Type:</label>
+                <Label>Type:</Label>
                 <select
                     className="form-select"
                     value={type}
@@ -137,20 +141,20 @@ export default function Edit({ setImages }) {
                     <option value="png">png</option>
                     <option value="jpeg">jpg</option>
                 </select>
-                <label>Tag:</label>
-                <input 
+                <Label>Tag:</Label>
+                <Input 
                     className="form-input"
                     type="text"
                     value={tag}
                     onChange={(e) => setTag(e.target.value)}
                 />
-                <button onClick={() => handleSubmit()}>Change</button>
-            </div>
+                <Button className="orange-button" onClick={() => handleSubmit()}>Change</Button>
+            </Card>
             <div className="image-view-div">
                 <div className="image-view">
                     {imageURL && <img src={imageURL} alt="Preview" style={{ maxWidth: '100%', maxHeight: '400px' }} />}
                 </div>
-                <button className="delete-button" onClick={() => handleDelete(id)}>Delete Image</button>
+                <Button className="delete-button" onClick={() => handleDelete(id)}>Delete Image</Button>
             </div>
         </div>
     )

@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import './App.css'
 import Sidebars from './components/Sidebar';
 import Home from './views/Home';
 import Edit from './views/Edit';
 import Library from './views/Library';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 
 function App() {
   const [ images, setImages ] = useState([]);

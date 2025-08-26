@@ -71,7 +71,7 @@ p {
   color: rgba(255, 255, 255, 0.8);
 }
 
-button {
+.orange-button {
   color: white;
   background-color: #FF8040;
   border-radius: 5px;
@@ -82,7 +82,8 @@ button {
   cursor: pointer;
 }
 
-button :hover {
+
+.orange-button:hover {
   background-color: green;
 }
 

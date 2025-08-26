@@ -13,7 +13,7 @@ export default function FileUploader({ onFileSelect }) {
 
     return (
         <div>
-            <input type="file" onChange={handleFileChange} />
+            <input type="file" onChange={handleFileChange}/>
             {file && (
                 <div>
                     <p style={{ color: "white"}}>

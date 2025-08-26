@@ -55,7 +55,7 @@ export default function Library({ images, setImages }) {
     );
 
     return (
-        <div className="background">
+        <div className="background" style={{position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, margin: 0}}>
             <div className="search-div">
                 <div className='search-container'>
                     <input 
